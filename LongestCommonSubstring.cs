@@ -27,6 +27,6 @@ public class Program
 		String s1  = Console.ReadLine();
 		Console.WriteLine("Please input the second string:");
 		String s2  = Console.ReadLine();
-		Console.WriteLine(String.Format("The longest common string of {0} and {1} is {2}.", s1, s2, longestCommonSubstring(s1,s2)));
+		Console.WriteLine(String.Format("The longest common substring of {0} and {1} is {2}.", s1, s2, longestCommonSubstring(s1,s2)));
 	}
 }
