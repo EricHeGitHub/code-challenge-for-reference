@@ -3,6 +3,7 @@ using System;
 public class Program
 {
 	public static string longestCommonSubstring(string s1, string s2){
+		//Create a length matrix with first row and column set to all 0;
 		int[,] longestCommonSubstringMatrix = new int[s1.Length + 1,s2.Length + 1];
 		int maxLen = 0;
 		int position = 0;
