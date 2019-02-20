@@ -5,8 +5,6 @@ public class LongestCommonSubsequence
 	public static string longestCommonSubsequence(string s1, string s2){
     // Create a length maxtrix with the first row and column set to all 0s
 		int[,] longestCommonSubsequenceMatrix = new int[s1.Length + 1,s2.Length + 1];
-		int maxLen = 0;
-		int position = 0;
 		for(int i = 1; i < s1.Length + 1; i++){
 			for(int j = 1; j <  s2.Length + 1; j ++){
 				if(s1[i - 1] == s2[j - 1]){
