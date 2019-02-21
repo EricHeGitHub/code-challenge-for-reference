@@ -46,12 +46,12 @@ public class LongestPalindrome {
                     }
                     
                 } 
-                //Console.WriteLine(i + " " + i/2 + " " + len);
-                if(maxLen < len){
-                    index = i / 2;
-                    maxLen = len;
-                    betweenCharMax = betweenChar;
-                }
+            //Console.WriteLine(i + " " + i/2 + " " + len);
+            if(maxLen < len){
+                index = i / 2;
+                maxLen = len;
+                betweenCharMax = betweenChar;
+            }
         } 
         //Console.WriteLine(index + " " + maxLen);
         //abccba
