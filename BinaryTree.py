@@ -32,6 +32,9 @@ class Node:
                     self.left = Node(data)
                 else:
                     self.left.insert(data)
+    def delete(self, val):
+        #To be implemented
+        pass
     def getHeight(n):
         if n.left == None and n.right == None:
             return 1
