@@ -16,8 +16,6 @@ class Node:
         if node.right is not None:
             self._printTree(node.right, indent + 1)
 
-
-
     def insert(self, data):
         if not self.data:
             self.data = data
@@ -32,9 +30,11 @@ class Node:
                     self.left = Node(data)
                 else:
                     self.left.insert(data)
+
     def delete(self, val):
         #To be implemented
         pass
+
     def getHeight(n):
         if n.left == None and n.right == None:
             return 1
