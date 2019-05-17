@@ -89,4 +89,3 @@ if __name__ == "__main__":
     print("=" * 40)
     root.delete(14)
     root.printTree()
-    print("test")
