@@ -32,38 +32,35 @@ class Node:
                     self.left.insert(data)
 
     def delete(self, val):
-        self._delete(self, val)
-
-    def _delete(self, node, val):
-        print(node.data,val)
-        if node.data > val:
-            if node.left:
-                node.left = self._delete(node.left, val)
+        if self is None:
+            return None
+        if self.data < val:
+            if self.right:
+                self.right = self.right.delete(val)
             else:
-                raise Exception("The value %s does not exist in the tree" % val )
-        elif node.data < val:
-            if node.right:
-                node.right = self._delete(node.right, val)
+                raise Exception("The value does not exist in the tree")
+        elif self.data > val:
+            if self.left:
+                self.left = self.left.delete(val)
             else:
-                raise Exception("The value %s does not exist in the tree" % val )
+                raise Exception("The value does not exist in the tree")
         else:
-            if node.left is None and node.right is None:
-                return None
-            elif node.left is not None and node.right is None:
-                return  node.left
-            elif node.right is not None and node.left is None:
-                return node.right
+            if self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
             else:
-                leftMaxNode, leftMaxNodeValue = self.findLeftMax(node.left)
-                _delete(leftMaxNode, leftMaxNodeValue)
-                node.data = leftMaxNodeValue
-
+                leftMaxNode = self.findLeftMax(self.left)
+                temp = leftMaxNode.data
+                self.left = self.left.delete(temp)
+                self.data = temp
+        return self
 
     def findLeftMax(self, node):
         if node.right is not None:
-            self.findLeftMax(node.right)
+            return self.findLeftMax(node.right)
         else:
-            return node, node.data
+            return node
 
     def getHeight(n):
         if n.left == None and n.right == None:
@@ -89,6 +86,6 @@ if __name__ == "__main__":
     root.insert(4)
     root.insert(13)
     root.printTree()
-    print("=" * 20)
-    root.delete(4)
+    print("=" * 40)
+    root.delete(14)
     root.printTree()
