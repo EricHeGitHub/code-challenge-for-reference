@@ -1,0 +1,12 @@
+How MRO choose the order of the classes inherited:
+
+The merge is computed according to the following rule
+take the head of the first list, i.e L[B1][0];
+if this head is not in the tail of any of the other lists,
+then add it to the linearization of C and remove it from the lists in the merge,
+otherwise look at the head of the next list and take it, if it is a good head.
+Then repeat the operation until all the class are removed or
+it is impossible to find good heads.
+
+Refer to the example on Wiki:
+https://en.wikipedia.org/wiki/C3_linearization
