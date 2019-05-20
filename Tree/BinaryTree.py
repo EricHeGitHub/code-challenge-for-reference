@@ -1,3 +1,4 @@
+from math import inf
 class Node:
     def __init__(self, data):
         self.left = None
@@ -74,6 +75,27 @@ class Node:
         return 1 + max(leftHeight, rightHeight)
 
 
+def checkBST(root):
+    isBST, maxValue, minValue = _check_binary_search_tree(root)
+    return isBST
+
+def _check_binary_search_tree(root):
+    isLeftBST = True
+    isRightBST = True
+    maxLeft = -inf
+    minLeft = inf
+    maxRight = -inf
+    minRight = inf
+    if root.left is None and root.right is None:
+        return True, root.data, root.data
+    if root.left:
+        isLeftBST, maxLeft, minLeft =  _check_binary_search_tree(root.left)
+    if root.right:
+        isRightBST, maxRight, minRight =  _check_binary_search_tree(root.right)
+    return (-inf if root.left is None else root.left.data)  < root.data < (inf if root.right is None else root.right.data) and isLeftBST and isRightBST and\
+           maxLeft < root.data < minRight, max(maxLeft, maxRight, root.data),\
+           min(minLeft, minRight, root.data)
+
 if __name__ == "__main__":
     root = Node(12)
     root.insert(6)
@@ -89,3 +111,4 @@ if __name__ == "__main__":
     print("=" * 40)
     root.delete(14)
     root.printTree()
+    print(checkBST(root))
