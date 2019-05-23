@@ -41,6 +41,7 @@ def MatrixChainManipulationRecursion(p, i, j): # the solution for combining ith 
 
 def MatrixChainManipulationDP(p, n):
     m = [[0 for _ in range(n)] for _ in range(n)] # the solution for combining ith matrix in jth matrix inclusive
+    b = [[0 for _ in range(n)] for _ in range(n)]
 
     for i in range(n):
         m[i][i] = 0
@@ -54,6 +55,7 @@ def MatrixChainManipulationDP(p, n):
                 cost = m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j]
                 if cost < m[i][j]:
                     m[i][j] = cost
+                    b[i][j] = k
 
     # The following solution does not work as it does not follow buttom-up: the solution order is 12, 13, 23
     # This causes problem as solution 13 requires results of 12 and 13, when solving 13, the solution for 23 is not ready yet.
@@ -66,10 +68,25 @@ def MatrixChainManipulationDP(p, n):
     #             if cost < m[i][j]:
     #                 m[i][j] = cost
 
+    character = "A"
+    printParenthesis(1, n - 1, n, b, character)
+    print()
     return m[1][n - 1]
 
+def printParenthesis(i, j, n , b, character):
+    if i == j:
+        print(character, end = "")
+        character = chr(ord(character) + 1)
+        return character
+    k = b[i][j]
+    print("(", end = "")
+    character = printParenthesis(i, k, n, b, character) #print the left half
+    character = printParenthesis(k + 1, j, n, b, character) #print the right half
+    print(")", end = "")
+    return character
+
 if __name__ == "__main__":
-    p = [10, 20, 30, 40]
+    p = [40, 20, 30, 10, 30]
 
     recursionResult = MatrixChainManipulationRecursion(p, 1, len(p) - 1)
 
